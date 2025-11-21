@@ -1,5 +1,5 @@
 export interface Aporte {
-  id: number;
+  id?: number;
   nombre_fiel: string;
   correo_fiel: string;
   motivo: string;

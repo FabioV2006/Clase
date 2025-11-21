@@ -50,7 +50,6 @@ export class VilcaCrearComponent {
   registrar() {
     if (this.aporteForm.valid) {
       const aporte: Aporte = {
-        id: 0,
         ...this.aporteForm.value
       };
       this.aporteService.insertar(aporte).subscribe({
