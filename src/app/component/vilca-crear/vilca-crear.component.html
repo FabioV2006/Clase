@@ -1,0 +1,55 @@
+<div class="container">
+  <h2>Registrar Aporte</h2>
+  <form [formGroup]="aporteForm" (ngSubmit)="registrar()">
+    <mat-form-field appearance="fill" >
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre_fiel">
+      <mat-error *ngIf="aporteForm.get('nombre_fiel')?.hasError('required')">Es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Correo</mat-label>
+      <input matInput formControlName="correo_fiel">
+      <mat-error *ngIf="aporteForm.get('correo_fiel')?.hasError('required')">Es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Motivo</mat-label>
+      <mat-select formControlName="motivo">
+        <mat-option *ngFor="let motivo of motivosAporte" [value]="motivo">
+          {{motivo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill"> <mat-label>Monto</mat-label>
+      <input matInput formControlName="monto_soles" type="number" style="text-align: right;" placeholder="0.00" />
+      <mat-error *ngIf="aporteForm.get('monto_soles')?.hasError('required')">
+        Es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Fecha Apor.</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fecha_aporte">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="aporteForm.get('fecha_aporte')?.hasError('required')">Obligatorio</mat-error>
+      <mat-error *ngIf="aporteForm.get('fecha_aporte')?.hasError('fechaFutura')">
+        No puedes ingresar una fecha futura
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Observacion</mat-label>
+      <input matInput formControlName="observaciones">
+      <mat-error *ngIf="aporteForm.get('observaciones')?.hasError('required')">Es obligatorio</mat-error>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-raised-button color="warn" type="button" routerLink="/listado">Cancelar</button>
+    </div>
+
+  </form>
+</div>

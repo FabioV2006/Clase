@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Listado de Aportes</h2>
+  <table mat-table [dataSource]="dataSource" class = "mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre_fiel">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre_fiel}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo_fiel">
+      <th mat-header-cell *matHeaderCellDef>Correo</th>
+      <td mat-cell *matCellDef="let element"> {{element.correo_fiel}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="motivo">
+      <th mat-header-cell *matHeaderCellDef><strong>Motivo</strong></th>
+      <td mat-cell *matCellDef="let element"> {{element.motivo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="monto_soles">
+      <th mat-header-cell *matHeaderCellDef><strong>Monto</strong></th>
+      <td mat-cell *matCellDef="let element"> {{element.monto_soles}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_aporte">
+      <th mat-header-cell *matHeaderCellDef>Fecha Apor.</th>
+      <td mat-cell *matCellDef="let element"> {{element.fecha_aporte | date:'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="observaciones">
+      <th mat-header-cell *matHeaderCellDef><strong>Observaciones</strong></th>
+      <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="eliminar(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="DisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: DisplayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[4, 8, 12]" showFirstLastButtons></mat-paginator>
+
+</div>
